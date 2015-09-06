@@ -41,8 +41,8 @@
 		632C0A4A1B99A7120085E7A7 /* WCCircularSliderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WCCircularSliderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		632C0A4F1B99A7120085E7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		632C0A501B99A7120085E7A7 /* WCCircularSliderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCircularSliderTests.m; sourceTree = "<group>"; };
-		632C0A5A1B99A73C0085E7A7 /* WCCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCCircularSlider.h; path = ../WCCircularSlider/WCCircularSlider.h; sourceTree = "<group>"; };
-		632C0A5B1B99A73C0085E7A7 /* WCCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCCircularSlider.m; path = ../WCCircularSlider/WCCircularSlider.m; sourceTree = "<group>"; };
+		632C0A5A1B99A73C0085E7A7 /* WCCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCCircularSlider.h; path = ../Classes/WCCircularSlider.h; sourceTree = "<group>"; };
+		632C0A5B1B99A73C0085E7A7 /* WCCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCCircularSlider.m; path = ../Classes/WCCircularSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
