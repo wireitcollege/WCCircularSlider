@@ -14,6 +14,7 @@
 		632C0A421B99A7120085E7A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632C0A411B99A7120085E7A7 /* Images.xcassets */; };
 		632C0A451B99A7120085E7A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 632C0A431B99A7120085E7A7 /* LaunchScreen.xib */; };
 		632C0A511B99A7120085E7A7 /* WCCircularSliderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 632C0A501B99A7120085E7A7 /* WCCircularSliderTests.m */; };
+		632C0A5C1B99A73C0085E7A7 /* WCCircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 632C0A5B1B99A73C0085E7A7 /* WCCircularSlider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		632C0A4A1B99A7120085E7A7 /* WCCircularSliderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WCCircularSliderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		632C0A4F1B99A7120085E7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		632C0A501B99A7120085E7A7 /* WCCircularSliderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCircularSliderTests.m; sourceTree = "<group>"; };
+		632C0A5A1B99A73C0085E7A7 /* WCCircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCCircularSlider.h; path = ../WCCircularSlider/WCCircularSlider.h; sourceTree = "<group>"; };
+		632C0A5B1B99A73C0085E7A7 /* WCCircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCCircularSlider.m; path = ../WCCircularSlider/WCCircularSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +66,7 @@
 		632C0A281B99A7120085E7A7 = {
 			isa = PBXGroup;
 			children = (
-				632C0A331B99A7120085E7A7 /* WCCircularSlider */,
+				632C0A331B99A7120085E7A7 /* Example */,
 				632C0A4D1B99A7120085E7A7 /* WCCircularSliderTests */,
 				632C0A321B99A7120085E7A7 /* Products */,
 			);
@@ -78,7 +81,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		632C0A331B99A7120085E7A7 /* WCCircularSlider */ = {
+		632C0A331B99A7120085E7A7 /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				632C0A381B99A7120085E7A7 /* AppDelegate.h */,
@@ -89,8 +92,10 @@
 				632C0A411B99A7120085E7A7 /* Images.xcassets */,
 				632C0A431B99A7120085E7A7 /* LaunchScreen.xib */,
 				632C0A341B99A7120085E7A7 /* Supporting Files */,
+				632C0A5A1B99A73C0085E7A7 /* WCCircularSlider.h */,
+				632C0A5B1B99A73C0085E7A7 /* WCCircularSlider.m */,
 			);
-			path = WCCircularSlider;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		632C0A341B99A7120085E7A7 /* Supporting Files */ = {
@@ -163,6 +168,7 @@
 		632C0A291B99A7120085E7A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WC;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Wire IT College";
 				TargetAttributes = {
@@ -222,6 +228,7 @@
 				632C0A3D1B99A7120085E7A7 /* ViewController.m in Sources */,
 				632C0A3A1B99A7120085E7A7 /* AppDelegate.m in Sources */,
 				632C0A371B99A7120085E7A7 /* main.m in Sources */,
+				632C0A5C1B99A73C0085E7A7 /* WCCircularSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +356,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = WCCircularSlider/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -359,7 +368,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = WCCircularSlider/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -418,6 +429,7 @@
 				632C0A561B99A7120085E7A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		632C0A571B99A7120085E7A7 /* Build configuration list for PBXNativeTarget "WCCircularSliderTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +438,7 @@
 				632C0A591B99A7120085E7A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

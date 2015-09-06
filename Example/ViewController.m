@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "WCCircularSlider.h"
 
 @interface ViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @end
 
 @implementation ViewController
@@ -22,6 +23,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)didChangeValue:(WCCircularSlider *)sender {
+    self.progressLabel.text = [NSString stringWithFormat:@"%.0f%%", sender.progress * 100.0f];
 }
 
 @end
