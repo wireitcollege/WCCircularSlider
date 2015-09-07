@@ -1,9 +1,6 @@
 # WCCircularSlider
 The WCCircularSlider is a great tool to present percentage based information in an elegant and simple way. The default appearance conforms to the beautiful flat design and the center space can be personalized with custom views.
-
-More info at: https://wireitcollege.binpress.com/product/wccircularslider/3251
 ![alt tag](https://wireitcollege.binpress.com/images/stores/store41569/screen-shot-2015-09-07-at-12.37.28-pm1.png)
-
 ## Installation
 
 ### Using CocoaPods
