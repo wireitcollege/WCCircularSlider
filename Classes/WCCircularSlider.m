@@ -23,7 +23,11 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
 
 - (instancetype)init
 {
-    self = [super init];
+    return [self initWithFrame:CGRectZero] ;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         _startAngle = -90.f;
         _cutoutAngle = 90.f;
@@ -31,11 +35,6 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
         _guideLineColor = [UIColor clearColor];
         _progress = 0.f;
     }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
     [self configureSlider];
     return self;
 }
@@ -46,11 +45,6 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
     return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self configureSlider];
-}
-
 - (void)configureSlider {
     UIGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     UIGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
@@ -58,7 +52,7 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
     [self addGestureRecognizer:tapRecognizer];
 }
 
-- (void)handleGesture:(UIPanGestureRecognizer *)gesture {
+- (void)handleGesture:(UIGestureRecognizer *)gesture {
     CGPoint location = [gesture locationInView:self];
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     CGFloat radius = CGRectGetMidX(self.bounds) - self.lineWidth / 2;
@@ -67,9 +61,16 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
     else startAngle = 360.f - startAngle;
     CGPoint startPoint = CGPointCenterRadiusAngle(center, radius, DegreesToRadians(startAngle));
     CGFloat angle = RadiansToDegrees(AngleBetweenPoints(location, startPoint, center));
+
     if (angle < 0) angle += 360.f;
-    
-    self.progress = angle / (360.f - _cutoutAngle);
+
+    if ((angle > 360.f - _cutoutAngle) && (angle < 360.f - _cutoutAngle/2)) {
+        self.progress = 1.0; // upper limit
+    } else if (angle > 360.f - _cutoutAngle/2) {
+        self.progress = 0.0; // lower limit
+    } else {
+        self.progress = angle / (360.f - _cutoutAngle);
+    }
 }
 
 - (void)setStartAngle:(CGFloat)startAngle {
@@ -88,7 +89,7 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
 }
 
 - (void)setProgress:(CGFloat)progress {
-    _progress = progress > 1.0 ? 0.0 : progress;
+    _progress = progress;
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     [self setNeedsDisplay];
 }
