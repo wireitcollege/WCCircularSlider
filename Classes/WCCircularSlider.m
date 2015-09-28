@@ -56,21 +56,17 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
     CGPoint location = [gesture locationInView:self];
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     CGFloat radius = CGRectGetMidX(self.bounds) - self.lineWidth / 2;
-    CGFloat startAngle = _startAngle - _cutoutAngle / 2.f;
-    if (startAngle < 0) startAngle = fabs(startAngle);
-    else startAngle = 360.f - startAngle;
+    CGFloat startAngle = _startAngle;
+    if (startAngle < 0)
+        startAngle = fabs(startAngle);
+    else
+        startAngle = 360.f - startAngle;
     CGPoint startPoint = CGPointCenterRadiusAngle(center, radius, DegreesToRadians(startAngle));
     CGFloat angle = RadiansToDegrees(AngleBetweenPoints(location, startPoint, center));
-
     if (angle < 0) angle += 360.f;
-
-    if ((angle > 360.f - _cutoutAngle) && (angle < 360.f - _cutoutAngle/2)) {
-        self.progress = 1.0; // upper limit
-    } else if (angle > 360.f - _cutoutAngle/2) {
-        self.progress = 0.0; // lower limit
-    } else {
-        self.progress = angle / (360.f - _cutoutAngle);
-    }
+    angle = angle - _cutoutAngle / 2.f;
+    
+    self.progress = angle / (360.f - _cutoutAngle);
 }
 
 - (void)setStartAngle:(CGFloat)startAngle {
@@ -89,7 +85,13 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
 }
 
 - (void)setProgress:(CGFloat)progress {
-    _progress = progress;
+    if (progress > 1)
+        _progress = 1;
+    else if (progress < 0)
+        _progress = 0;
+    else
+        _progress = progress;
+    
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     [self setNeedsDisplay];
 }
