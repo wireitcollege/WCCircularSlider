@@ -7,7 +7,7 @@ The WCCircularSlider is a great tool to present percentage based information in 
 
 ```
 platform :ios, '5.0'
-pod 'WCCircularSlider', '~> 0.0.1'
+pod 'WCCircularSlider', '~> 0.0.2'
 ```
 
 ### Manual
