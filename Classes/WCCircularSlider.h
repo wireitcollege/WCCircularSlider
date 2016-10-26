@@ -30,4 +30,15 @@ IB_DESIGNABLE
 
 @property (nonatomic, strong) IBInspectable UIColor *guideLineColor;
 
+@property (nonatomic) IBInspectable BOOL enableRoundCap;
+
+
+/*
+ Scale of headerCircle related to lineWidth
+ 
+ Default value is 0.f, No headerCircle
+ Default range is (0,4]
+ */
+@property (nonatomic) IBInspectable CGFloat headerCircleScale;
+
 @end

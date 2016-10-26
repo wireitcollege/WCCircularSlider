@@ -8,6 +8,9 @@
 
 #import "WCCircularSlider.h"
 
+static const NSInteger minCircleScale = 0;
+static const NSInteger maxCircleScale = 4;
+
 static inline double DegreesToRadians(double angle) { return M_PI * angle / 180.0; }
 static inline double RadiansToDegrees(double angle) { return angle * 180.0 / M_PI; }
 
@@ -34,6 +37,7 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
         _lineWidth = 40.f;
         _guideLineColor = [UIColor clearColor];
         _progress = 0.f;
+        _headerCircleScale = 0.f;
     }
     [self configureSlider];
     return self;
@@ -104,17 +108,31 @@ static inline CGFloat AngleBetweenPoints(CGPoint a, CGPoint b, CGPoint c) {
     CGContextSetLineWidth(context, self.lineWidth);
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     CGFloat radius = CGRectGetMidX(self.bounds) - self.lineWidth / 2;
+    if (self.headerCircleScale > minCircleScale && self.headerCircleScale <= maxCircleScale) {
+        radius -= self.lineWidth * self.headerCircleScale;
+    }
+    
     CGFloat arcStartAngle = DegreesToRadians(self.startAngle + 360.0 - self.cutoutAngle / 2.0);
     CGFloat arcEndAngle = DegreesToRadians(self.startAngle + self.cutoutAngle / 2.0);
     CGFloat progressAngle = DegreesToRadians(360.f - self.cutoutAngle) * self.progress;
     
     [self.guideLineColor set];
+    if (self.enableRoundCap) {
+        CGContextSetLineCap(context, kCGLineCapRound);
+    }
     CGContextAddArc(context, center.x, center.y, radius, arcStartAngle, arcEndAngle, 1);
     CGContextStrokePath(context);
     
     [self.tintColor set];
     CGContextAddArc(context, center.x, center.y, radius, arcStartAngle, arcStartAngle - progressAngle, 1);
     CGContextStrokePath(context);
+    
+    if (self.headerCircleScale > minCircleScale && self.headerCircleScale <= maxCircleScale) {
+        CGPoint circleCenter = CGPointMake(center.x + (radius) * cos(progressAngle - arcStartAngle), center.y - (radius ) * sin(progressAngle - arcStartAngle));
+        
+        CGContextAddEllipseInRect(context, CGRectMake(circleCenter.x - self.lineWidth, circleCenter.y - self.lineWidth, self.lineWidth * self.headerCircleScale, self.lineWidth * self.headerCircleScale));
+        CGContextFillPath(context);
+    }
 }
 
 @end
